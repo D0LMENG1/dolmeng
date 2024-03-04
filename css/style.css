@@ -82,24 +82,24 @@ html{
 }
 
 .parallax-slider .img-container.one {
-  background:url(../images/stc.gif);
+  background:url(../images/dolmengi.PNG);
   background-position: center;
   background-size: cover;
 }
 
 .parallax-slider .img-container.two {
-  background:url(../images/product.gif);
+  background:url(../images/work.png);
   background-position: center;
   background-size: cover;
 }
 
 .parallax-slider .img-container.three {
-  background:url(../images/edu.png);
+  background:url(../images/team.PNG);
   background-position: center;
   background-size: cover;
 }
 .parallax-slider .img-container.four {
-  background:url(../images/gochury.gif);
+  background:url(../images/nexxt.PNG);
   background-position: center;
   background-size: cover;
 }
@@ -306,7 +306,7 @@ ul{
   position: relative;
   width: 100%;
   height: 100vh;
-  background: url(../images/aboutsteel.png);
+  background: url(../images/d1.PNG);
   background-position: center;
   background-size: cover;
 }
