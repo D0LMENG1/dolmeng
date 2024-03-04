@@ -88,7 +88,7 @@ html{
 }
 
 .parallax-slider .img-container.two {
-  background:url(../images/work.png);
+  background:url(../images/work.PNG);
   background-position: center;
   background-size: cover;
 }
