@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<link rel="stylesheet" href="style.css">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page - Pebble Land</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: #f9f9f9;
+    }
+    /* ----- 오버레이 배경 ----- */
+    .overlay {
+      /* 기본적으로 숨겨둠 */
+      display: none;
+      position: fixed;       /* 스크롤과 무관하게 화면 전체 덮기 위함 */
+      top: 0;               
+      left: 0;               
+      width: 100vw;         
+      height: 100vh;        
+      background-color: rgba(0, 0, 0, 0.3); /* 살짝 어두운 반투명 */
+      z-index: 10;          /* 다른 요소보다 위에 표시하기 */
+    }
+
+    .pebble-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 65%;
+      max-width: 1600px;
+      gap: 10vw;
+      position: relative; /* 오버레이와의 z-index 우선순위 제어를 위해 position 설정 */
+      z-index: 20;        /* 오버레이보다 위로 올리고 싶다면 조절 가능 */
+    }
+    .pebble {
+      width: 10vw;
+      height: 10vw;
+      max-width: 150px;
+      max-height: 150px;
+      transition: transform 0.3s ease; /* 호버 시 크기 변경 애니메이션 */
+      cursor: pointer; /* 마우스를 올리면 포인터(손가락)로 표시 */
+    }
+
+    /* 호버 시 커지는 효과를 위해 추가한 클래스 */
+    .pebble.hover-grow {
+      transform: scale(1.5);
+      z-index: 999;  /* 다른 돌멩이보다 위로 */
+    }
+
+    .component-label {
+      text-align: center;
+      font-family: "omyu_pretty",sans-serif;
+      font-size: 1.5vw;
+      margin-top: 1vw;
+    }
+    .hidden {
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 오버레이(배경) -->
+  <div class="overlay" id="overlay"></div>
+
+  <div class="pebble-container">
+    <div class="pebble hidden" id="about">
+      <svg class="pebble" viewBox="0 0 131.49 94.71">
+        <path d="M63.78,94.71c-23.04,0-40.57-4.71-51.36-13.94C4.67,74.15.5,65.52.03,55.11-.76,37.74,15.1,13.27,46.95.11c.77-.31,1.64.05,1.96.81.32.77-.05,1.64-.81,1.96C17.52,15.51,2.28,38.65,3.03,54.98c.44,9.54,4.25,17.45,11.35,23.51,13.48,11.52,38.38,15.63,71.99,11.88,7.79-.87,37.69-8.88,41.69-32.23,3.04-17.78-10.22-44.84-34.12-55.26-.76-.33-1.11-1.21-.78-1.97s1.21-1.11,1.97-.78c25.54,11.14,39.17,39.25,35.88,58.52-4.31,25.19-36.05,33.78-44.31,34.7-8.14.91-15.79,1.36-22.91,1.36Z"/>
+        <circle cx="56.53" cy="32.5" r="2"/>
+        <circle cx="72.03" cy="32.5" r="2"/>
+        <path d="M64.89,42c-7.06,0-14.01-2.09-20.66-6.23-.7-.44-.92-1.36-.48-2.07.44-.7,1.36-.92,2.07-.48,6.38,3.97,13.02,5.92,19.75,5.77,7.07-.15,14-2.58,20.6-7.22.68-.48,1.61-.31,2.09.36.48.68.31,1.61-.36,2.09-7.1,4.99-14.59,7.61-22.26,7.77-.25,0-.49,0-.74,0Z"/>
+      </svg>
+      <div class="component-label">Me?</div>
+    </div>
+    <div class="pebble hidden" id="works">
+      <svg class="pebble" viewBox="0 0 131.49 94.71">
+        <path d="M63.78,94.71c-23.04,0-40.57-4.71-51.36-13.94C4.67,74.15.5,65.52.03,55.11-.76,37.74,15.1,13.27,46.95.11c.77-.31,1.64.05,1.96.81.32.77-.05,1.64-.81,1.96C17.52,15.51,2.28,38.65,3.03,54.98c.44,9.54,4.25,17.45,11.35,23.51,13.48,11.52,38.38,15.63,71.99,11.88,7.79-.87,37.69-8.88,41.69-32.23,3.04-17.78-10.22-44.84-34.12-55.26-.76-.33-1.11-1.21-.78-1.97s1.21-1.11,1.97-.78c25.54,11.14,39.17,39.25,35.88,58.52-4.31,25.19-36.05,33.78-44.31,34.7-8.14.91-15.79,1.36-22.91,1.36Z"/>
+        <circle cx="56.53" cy="32.5" r="2"/>
+        <circle cx="72.03" cy="32.5" r="2"/>
+      </svg>
+      <div class="component-label">Works!</div>
+    </div>
+    <div class="pebble hidden" id="etc">
+      <svg class="pebble" viewBox="0 0 131.49 94.71">
+        <path d="M63.78,94.71c-23.04,0-40.57-4.71-51.36-13.94C4.67,74.15.5,65.52.03,55.11-.76,37.74,15.1,13.27,46.95.11c.77-.31,1.64.05,1.96.81.32.77-.05,1.64-.81,1.96C17.52,15.51,2.28,38.65,3.03,54.98c.44,9.54,4.25,17.45,11.35,23.51,13.48,11.52,38.38,15.63,71.99,11.88,7.79-.87,37.69-8.88,41.69-32.23,3.04-17.78-10.22-44.84-34.12-55.26-.76-.33-1.11-1.21-.78-1.97s1.21-1.11,1.97-.78c25.54,11.14,39.17,39.25,35.88,58.52-4.31,25.19-36.05,33.78-44.31,34.7-8.14.91-15.79,1.36-22.91,1.36Z"/>
+        <circle cx="56.53" cy="32.5" r="2"/>
+        <circle cx="72.03" cy="32.5" r="2"/>
+      </svg>
+      <div class="component-label">Etc...</div>
+    </div>
+    
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 기존처럼 hidden 클래스가 있는 돌멩이는 페이드-인 애니메이션
+      // (1) 페이지 로드 후 1초 뒤에 페이드-인 애니메이션이 시작되게 예시 설정
+      setTimeout(() => {
+        document.querySelectorAll('.pebble.hidden').forEach(pebble => {
+          pebble.classList.remove('hidden'); // hidden 제거 -> fadeIn 실행
+        });
+      }, 1000);
+
+      // (2) 각 돌멩이 hover 시 동작
+      const overlay = document.getElementById('overlay');
+
+      document.querySelectorAll('.pebble svg').forEach(pebbleSVG => {
+        // 마우스 올렸을 때
+        pebbleSVG.addEventListener('mouseenter', () => {
+          // 돌멩이에 hover-grow 클래스를 추가 -> 커짐
+          pebbleSVG.classList.add('hover-grow');
+          // 배경 오버레이 보이기
+          overlay.style.display = 'block';
+        });
+        // 마우스 뗐을 때
+        pebbleSVG.addEventListener('mouseleave', () => {
+          // 원래 크기로
+          pebbleSVG.classList.remove('hover-grow');
+          // 오버레이 가리기
+          overlay.style.display = 'none';
+        });
+      });
+
+      // (3) 각 돌멩이 클릭 시 페이지 이동
+      const aboutPebble = document.getElementById('about');
+      const worksPebble = document.getElementById('works');
+      const etcPebble   = document.getElementById('etc');
+
+      aboutPebble.addEventListener('click', () => {
+        window.location.href = 'me.html';
+      });
+      worksPebble.addEventListener('click', () => {
+        window.location.href = 'works.html';
+      });
+      etcPebble.addEventListener('click', () => {
+        window.location.href = 'etc.html';
+      });
+    });
+  </script>
+</body>
+</html>
